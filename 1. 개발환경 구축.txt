@@ -1,0 +1,78 @@
+nodejs + express -> 개발 환경
+visual studio code 
+
+1. vue.js 개발을위한 유용한 모듈
+
+Vetur  - vue 문법에 맞는  Syntax Highligher 
+
+Debugger for Chrome 
+
+Prettier  - Code formatter 
+
+2. Vue Cli 설치
+npm i -g @vue/cli
+
+vue 명령어 
+프로젝트 생성
+vue create 프로젝트명
+
+vue create vue-project
+
+설치후 
+npm run serve -> 작업환경 서버8080
+
+SPA(Single Page Application) ->  하나의 페이지
+
+vue add 패키지명
+	
+vue-router
+
+vue add router
+
+vue.js 모듈, vue 파일을 불러올때 
+require X -> import 변수명 from 파일 경로
+const 변수명 = require("경로");
+
+module.exports == export default 
+
+Home.vue 
+<template>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+
+<template>
+ -> 출력되는 부분 
+
+</template>
+
+<script>
+export default {
+	name : "", -- 컴포넌트 이름
+	components : { 컴포넌트, .... },
+	data() { // 템플릿에서 사용할 수 있는 데이터
+		return {
+			속성 : 값,  // 속성은 템플릿 안에서의 변수 {{ 속성 }}
+			속성 : 값
+		}
+	},
+	setup() {}, 컴포지션 API를 설정
+	created() {}, // 컴포넌트가 생성되면 호출되는 메서드(컴포넌트가 출력전 생성되었을때 호출)
+	mounted() {}, // 컴포넌트가 HTML로 출력이 되었을때 호출 
+}
+</script>
