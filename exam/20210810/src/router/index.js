@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import School2 from '../views/School2.vue'
-import Test from '../views/Test.vue'
+//import School2 from '../views/School2.vue'
+//import Test from '../views/Test.vue'
+//import ListExam from '../views/ListExam.vue'
+//import IfExam from '../views/IfExam.vue'
+import EventExam from '../views/EventExam.vue'
 
 const routes = [
   {
@@ -20,12 +23,7 @@ const routes = [
   {
     path : '/school',
     name : 'School',
-    component : School2
-  },
-  {
-    path : '/test',
-    name : 'Test',
-    component : Test,
+    component : EventExam,
   }
 ]
 

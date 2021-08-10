@@ -101,6 +101,25 @@
 		
 리스트 렌터링(v-for) - 반복문 
 
+	axios -> npm 
+	-> 원격 데이터 요청(Http Request  -> 응답 데이터)
+	
+	-> 원격 요청은 같은 도메인, 같은 포트, 같은 서버 -> 기본 설정
+	CORS Policy - Cross origin Resources Sharing - 기본 같은 도메인, 같은 포트, 같은 서버
+	-> 서버쪽 응답 헤더에서 자원 공유를 허용
+	Access-Control-Allow-Origin : 
+	
+조건문(v-if, v-show)
+v-if - 조건에 해당 되지 않는 요소는 삭제(전부 가져온 후 삭제 - 조금 더 느리다) 
+v-show - 조건에 해당되지 않는 요소는 감춤 처리(display: none)
+	
+	
+
+이벤트 처리 (v-on)
+	click - 가장 많이쓰는 
+	change
+	keyup 
+
 
 
 
