@@ -1,0 +1,66 @@
+1. vue cli 설치
+   vscode - visual studio code
+	- vue 확장팩
+		vetur
+		Prettier - Code formatter 
+		
+	- Vue CLI 설치
+	npm install -g @vue/cli
+	
+	- Vue 프로젝트 생성 
+	vue create 프로젝트명
+	
+	- 배포
+	npm run build -> 작업 결과물 -> dist/index.html, css, js 
+	
+	SPA(Single Page Application)
+	
+	프론트앤드 개발 - 백앤드 개발
+	
+	- Vue Router
+	vue add router
+	- router - 라우팅 링크관련 설정
+	- views  - 페이지 컴포넌트
+	
+	vue ui 
+	
+	
+	import 변수명 from 모듈 경로;
+	const 변수명 = require('경로')
+	
+	export default 
+	module.exports 
+	
+	컴포넌트의 기본구조
+	<template>
+		출력 되는 영역 
+	</template>
+	<script>
+	export default {
+		name : "", //컴포넌트 이름(선택 사항)
+		components : {}, 다른 컴포넌트를 불어와서 사용할때,
+		data() {
+			return {
+				속성 : 값, ... -> 출력 영역 데이터 바인딩 값 {{ 속성 }}
+			};
+		},
+		setup() {}, // 컴포지션 API 
+		created() {}, // 컴포넌트가 생성되었을때 호출되는 메서드(출력 X)
+		mounted() {}, // 컴포넌트가 HTML로 출력 되었을때 호출되는 메서드
+		unmounted() {}, // 링크가 이동 했을때 호출되는 메서드
+		methods : {} // 컴포넌트 내에서 사용할 메서드
+	}
+	</script>
+	
+	바인딩 - 기본 텍스트
+	
+	v-html -> HTML 태그를 출력하는 바인딩
+	
+	Form 데이터 
+	v-model 
+		<input type="text" value="..."> - v-model -> value 속성을 바인딩 
+		<input type="radio" value="1" checked>
+		<input type="checkbox" ...                     -> v-model -> checked 속성을 바인딩
+		
+	v-bind -> 속성의 값 바인딩
+	v-bind:속성 == :속성 
