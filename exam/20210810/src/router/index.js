@@ -5,7 +5,7 @@ import Home from '../views/Home.vue'
 //import ListExam from '../views/ListExam.vue'
 //import IfExam from '../views/IfExam.vue'
 //import EventExam from '../views/WatchExam.vue'
-import DataBinding from '../views/DataBinding.vue'
+import DataBinding from '../views/ComponentExam2.vue'
 
 const routes = [
   {
