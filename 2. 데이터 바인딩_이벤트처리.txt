@@ -61,6 +61,46 @@
 		<input type="text" value="..."> - v-model -> value 속성을 바인딩 
 		<input type="radio" value="1" checked>
 		<input type="checkbox" ...                     -> v-model -> checked 속성을 바인딩
+																			    -> check된 항목을 배열 객체로 담는 역할 
+		<textarea>{{ 내용... }}</textarea> --> 오류 -> v-model -> value 속성에 바인딩 
+		<textarea v-model="내용"></textarea>
+		
+		select -> v-model -> value 속성을 바인딩
 		
 	v-bind -> 속성의 값 바인딩
 	v-bind:속성 == :속성 
+	
+	<input type="text" readonly disabled>
+	
+	v-bind:class - 바인드 -> 클래스가 추가가 
+				    "{ '추가될 클래스' : 변수가 true, .... }
+	
+	v-bind:class="[클래스1, 클래스2, ... ]" 
+	
+	v-bind:style="객체"
+		{ 속성 : 값 }, { color: red} -> style="color: red"
+	v-bind:style="[변수, 변수..]"
+		color : "red"
+	
+	
+	{{ 변수 }}
+	v-html
+	
+	속성과 관련되어 있는 바인딩 디렉티브
+	v-model - form의 입력 태그(value, checked - 태그의 속성에 맞게 바인딩 속성을 결정)
+	v-bind - 일반 속성 전부를 바인딩 할 수 있다
+				(v-bind:속성 -> :속성)
+	
+	v-bind:class ->클래스 관련 바인드
+			v-bind:class="{'추가 클래스명' : 추가 클래스가 추가될 조건(ture) }"
+			v-bind:class="[클래스1, 클래스2, 클래스3 .. ]" - 조건 없는 단순 추가
+			
+	v-bind:style -> 스타일 속성관련 바인드
+		v-bind:style="{ 속성 : 값, 속성 : 값 }"
+		v-bind:style="[속성변수1, 속성변수2 .. ]"
+		
+리스트 렌터링(v-for) - 반복문 
+
+
+
+
