@@ -4,7 +4,8 @@ import Home from '../views/Home.vue'
 //import Test from '../views/Test.vue'
 //import ListExam from '../views/ListExam.vue'
 //import IfExam from '../views/IfExam.vue'
-import EventExam from '../views/EventExam.vue'
+//import EventExam from '../views/WatchExam.vue'
+import DataBinding from '../views/DataBinding.vue'
 
 const routes = [
   {
@@ -23,7 +24,7 @@ const routes = [
   {
     path : '/school',
     name : 'School',
-    component : EventExam,
+    component : DataBinding,
   }
 ]
 

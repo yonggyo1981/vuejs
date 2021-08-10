@@ -115,10 +115,18 @@ v-show - 조건에 해당되지 않는 요소는 감춤 처리(display: none)
 	
 	
 
-이벤트 처리 (v-on)
-	click - 가장 많이쓰는 
-	change
-	keyup 
+이벤트 처리 (v-on) -> @(v-on:)
+	click - 가장 많이쓰는  @click 
+	change @change
+	keyup  @keyup 
+	
+computed와 watch
+	-> 값의 상태 변화를 모니터링 동기화를 할때 
+	
+	computed - 처음 렌데링 될때도 호출
+	
+	watch -> 값 각각의 상태를 모니터링 
+			-> 처음 렌더링 될때 호출 X, 값이 변가 있었을 때만 호출 
 
 
 
