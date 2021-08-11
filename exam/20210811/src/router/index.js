@@ -1,11 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-//import School2 from '../views/School2.vue'
-//import Test from '../views/Test.vue'
-//import ListExam from '../views/ListExam.vue'
-//import IfExam from '../views/IfExam.vue'
-//import EventExam from '../views/WatchExam.vue'
-import DataBinding from '../views/ComponentExam3.vue'
+import School from '../views/ComponentExam5.vue'
 
 const routes = [
   {
@@ -24,7 +19,7 @@ const routes = [
   {
     path : '/school',
     name : 'School',
-    component : DataBinding,
+    component : School
   }
 ]
 
