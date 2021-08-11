@@ -1,26 +1,32 @@
 <template>
-    <input type="number" v-model="state.num1" @keyup="sum"> + 
-    <input type="number" v-model="state.num2" @keyup="sum"> = 
-    {{ state.result }}
+    <input type="number" v-model="num1"> + 
+    <input type="number" v-model="num2"> = 
+    {{ result }}
+    <child-component />
 </template>
 <script> 
-import { reactive, computed } from 'vue';
+import { sumNums } from '../common.js';
+import { onMounted, onUnmounted, provide } from 'vue';
+import ChildComponent from '../components/ChildComponent6.vue';
 export default {
+    components : { ChildComponent },
     setup() {
-        const state = reactive({
-            num1 : 0,
-            num2 : 0,
-            result : 0
+        
+        onMounted(() => {
+          //  console.log("Mounted");
         });
 
-        function sum() {
-            state.result = state.num1 + state.num2;
-        }
+        onUnmounted(() => {
+           // console.log("Unmounted");
+        });
 
+        provide("title", "부모 컴포넌트");
+
+        const { num1, num2, result } = sumNums();
         return {
-            state,
-            sum,
+            num1, num2, result
         }
+            
     }
 }
 </script>

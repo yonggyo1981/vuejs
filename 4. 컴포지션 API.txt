@@ -1,4 +1,13 @@
 1. vue 모듈
+1) reactive
 reactive({
 	데이터 
-}); -> 양방항 바인딩 지원
+}); -> 양방항 바인딩 지원 
+(data() { })
+(methods 
+
+2) computed
+
+3) toRefs -> 외부 함수를 setup에서 사용 가능하게
+
+4) Provide, Inject
