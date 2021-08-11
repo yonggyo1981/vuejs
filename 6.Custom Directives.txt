@@ -1,0 +1,28 @@
+커스텀 디렉티브
+1. 컴포넌트 내에서 작성
+export default {
+	directives : {
+		디렉티브명 : {
+			mounted(el) {
+				// el - 디렉티브가 적용된 요소(HTML)
+			}
+		}
+	}	
+}
+
+2. 공통 - main.js 
+app.directive("디렉티브명", {
+	mounted(el) {
+		// el - 디렉티브가 적용된 요소(HTML)
+	}
+});
+
+
+
+3. Vuex - 모든 컴포넌트가 접근 가능한 중앙 집중식 저장소
+	- 데이터 공유
+	- 변경, 수정 - 통제(메서드)
+	
+	설치 
+	npm i vuex@next
+
