@@ -31,3 +31,15 @@
 		1), 2) 부모 컴포넌트 -> 자식으로 전달
 		
 		자식 -> 부모로 데이터를 전달
+		
+	4) Provide / Inject 
+		상위 -> 하위
+		
+	5) Computed
+	
+	6) slot 
+		변경 가능 영역(HTML 요소, 텍스트 등)
+		
+		v-slot:지정한 name 속성
+		
+		v-slot:name 속성명 생략 -> #name 속성명
