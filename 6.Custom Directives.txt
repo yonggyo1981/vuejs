@@ -26,3 +26,4 @@ app.directive("디렉티브명", {
 	설치 
 	npm i vuex@next
 
+	vuex - createStore 
