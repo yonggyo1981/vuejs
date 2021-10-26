@@ -3,6 +3,8 @@
     <PageTitle />
     <page-title />
     <h1>{{ title }}</h1>
+    <input type="text" v-model="title" />
+    <button type="button" @click="msg();">클릭!</button>
 </template>
 <script>
 import PageTitle from "../components/PageTitle.vue"
@@ -22,13 +24,14 @@ export default {
  },
  mounted() { // HTML이 로딩이 완료 되었을때 
     console.log("mounted!!");
-    this.msg();
+    //this.msg();
  },
  unmounted() { // 페이지를 이동될때 호출
     console.log("unmounted!!");
  },
  methods : {
      msg() {
+         console.log(this.title);
          alert(this.title);
      }
  }
