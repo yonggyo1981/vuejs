@@ -2,8 +2,10 @@
 <PageTitle :title="title" />
 <Calculator :num1="10" :num2="20" opr="/" />
 <PropsTest :posts="[1,2,3,4]" 
-    :blog="blog"
+    :blog="{title : blog.title, poster : blog.poster }"
+    :checked="true"
 />
+<props-test :blog="blog" />
 </template>
 <script>
 import PageTitle from "../components/PageTitle.vue"
