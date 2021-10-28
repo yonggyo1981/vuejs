@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import DataBinding from '../views/DataBindingButton.vue'
+import DataBinding from '../views/NestedComponent.vue'
 
 const routes = [
   {
@@ -17,13 +17,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue')
-  },
-  {
     path: '/databinding',
-    name: 'Databinding',
+    name: 'DataBinding',
     component: DataBinding
   }
 ]
