@@ -7,13 +7,6 @@
 import ChildComponent from "./ChildComponent.vue"
 export default {
     components : {ChildComponent},
-    computed : {
-       title() {
-           //return this.$refs.child_component.msg;
-           console.log(this.$refs.child_component);
-           return "";
-       }
-    },
     mounted() {
         //this.$refs.button1.click();
        // this.$refs.child_component.$refs.btn.click();
