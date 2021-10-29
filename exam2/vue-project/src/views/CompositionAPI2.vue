@@ -1,7 +1,7 @@
 <template>
-    <input type="text" v-model.number="state.num1"> + 
-    <input type="text" v-model.number="state.num2"> = 
-    {{ state.result }}
+    <input type="text" v-model.number="num1"> + 
+    <input type="text" v-model.number="num2"> = 
+    {{ result }}
 </template>
 <script>
 import { reactive, computed, toRefs } from "vue";
@@ -19,9 +19,12 @@ function calculator() {
 export default {
     setup() {
         
-        let state = calculator();
+        let { num1, num2, result } = calculator();
+        
         return {
-            state,
+            num1,
+            num2,
+            result,
         };
     }
 }
