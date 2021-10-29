@@ -4,23 +4,14 @@
     {{ result }}
 </template>
 <script>
-import { reactive, computed, toRefs } from "vue";
+//import { reactive, computed, toRefs } from "vue";
 
-function calculator() {
-    let state = reactive({
-         num1 : 0,
-         num2 : 0,
-        result : computed(() => state.num1 + state.num2),
-    });
-
-    return toRefs(state);
-}
-
+import { calculator, func1 } from "../lib/calculator.js";
 export default {
     setup() {
         
         let { num1, num2, result } = calculator();
-        
+        func1();
         return {
             num1,
             num2,
