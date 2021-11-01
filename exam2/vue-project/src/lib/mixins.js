@@ -5,7 +5,10 @@ const commonLib = {
     mounted() { 
         console.log("mixin mounted");
     },
-    unmounted() {
+    unmounted() {   
+        console.log("mixin unmounted");
+    },
+    methods : {
 
     }
 };

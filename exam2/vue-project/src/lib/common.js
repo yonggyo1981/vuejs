@@ -6,20 +6,19 @@ const commonLib = {
             return num1 + num2;
         },
         async $httpRequest(url, data, method) {
-            method = method || "GET";
-            let result;
+            method = method || "GET";  
             try {
-                result = await axios({
-                    method,
-                    url,
-                    data
-                });
-                console.log(result);
-                return result;
+                const result = await axios({
+                        method,
+                        url,
+                        data
+                    });
+                return result.data;
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 return false;
-            } 
+            }                
+            
         }
     }
 }
