@@ -1,26 +1,35 @@
 <template>
-    <input type="number" v-model.number="state.num1" /> + 
-    <input type="number" v-model.number="state.num2" /> = 
-    {{ state.result }} 
+    <input type="number" v-model.number="num1" /> + 
+    <input type="number" v-model.number="num2" /> = 
+    {{ result }} 
     <br><br>
     <button type="button" @click="msg">클릭!</button>
 </template>
 <script>
-import { reactive, computed } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
+import calculator from "../calculator.js";
 export default {
+    created() {
+        console.log("Created!");
+    },
     setup() {
-        let state = reactive({
-            num1 : 0,
-            num2 : 0,
-            result : computed(() => state.num1 + state.num2 ),
-        });
-
         function msg() {
             alert("메세지 테스트!");
         }
+        
+        onMounted(() => {
+            console.log("Mounted!");
+        });
 
+        onUnmounted(() => {
+            console.log("Unmounted");
+        });
+
+        let { num1, num2, result } = calculator();
         return {
-            state,
+            num1,
+            num2,
+            result,
             msg,
         }
     }
