@@ -15,6 +15,13 @@ export default {
                 console.error(err);
                 return false;
             }
+        },
+        /**
+         * FormData 형식 데이터 -> json 
+         * @param {*} data 
+         */
+        $formDataToJson(data) {
+
         }
     }
 }

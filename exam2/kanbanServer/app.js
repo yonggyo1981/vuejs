@@ -5,15 +5,16 @@ const app = express();
 app.set('PORT', process.env.PORT || 3000);
 app.use(morgan('dev'));
 
-/** body-parser */
-app.use(express.json());
-app.use(express.urlencoded({ extended : false }));
-
 /** 공통 미들웨어 */
 app.use((req,res,next) => {
 	res.header("Access-Control-Allow-Origin", "*"); // CORS 
+	res.header("Access-Control-Allow-Headers", "*"); // CORS
 	next();
 });
+
+/** body-parser */
+app.use(express.json());
+app.use(express.urlencoded({ extended : false }));
 
 /** 라우터 등록 */
 app.use("/member", memberRouter);
