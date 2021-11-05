@@ -13,7 +13,9 @@
 </form>
 </template>
 <script>
+import member from "../../models/member.js"
 export default {
+    mixins : [member],
     props : {
         mode : {
             type : String,
@@ -33,6 +35,12 @@ export default {
     methods : {
         formSubmit(e) {
             e.preventDefault();
+            const formData = new FormData(this.$refs.frmMember);
+            if (this.mode == 'join') {  // 회원 가입 
+                this.$join(formData);
+            } else { // 회원 정보 수정
+                this.$update(formData);
+            }
         }
     }
 }
