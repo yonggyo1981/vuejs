@@ -9,7 +9,7 @@ export default {
     components: {PageTitle, Form},
     data() {
         return {
-            mode : "join",
+            mode : "join"
         };
     }
 }
