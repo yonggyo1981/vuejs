@@ -1,5 +1,5 @@
 <template>
-<form method="post" autocomplete='off'>
+<form ref="frmMember" method="post" autocomplete='off' @submit="formSubmit($event)">
     <input type="hidden" name="mode" :value="mode">
     <input type="text" name="memId" placeholder='아이디' :value="member.memId" v-if="mode == 'join'">
     <div v-else>아이디 : {{ member.memId }}</div>
@@ -29,7 +29,11 @@ export default {
                 };
             }
         }
-        
+    },
+    methods : {
+        formSubmit(e) {
+            e.preventDefault();
+        }
     }
 }
 </script>
