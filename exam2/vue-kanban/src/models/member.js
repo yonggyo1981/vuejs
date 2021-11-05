@@ -3,18 +3,26 @@
  * 
  */
 export default {
-    /**
-     * 회원가입 처리 
-     * @param {*} data 
-     */
-    $join(data) {
-        console.log(data);
+    data() {
+        return {
+            requestURL : this.$store.state.apiURL + "/member",
+        };
     },
-    /**
-     * 회원정보 수정 
-     * @param {*} data 
-     */
-    $update(data) {
-        console.log(data);
+    methods : {
+        /**
+         * 회원가입 처리 
+         * @param {*} data 
+         */
+        async $join(data) {
+            const result = await this.$request(this.requestURL, data, "POST");
+            console.log(result);
+        },
+        /**
+         * 회원정보 수정 
+         * @param {*} data 
+         */
+        $update(data) {
+            console.log(data);
+        }
     }
 }

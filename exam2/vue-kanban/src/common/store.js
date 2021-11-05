@@ -2,7 +2,9 @@ import { createStore } from 'vuex'
 const store = createStore({
     state() {
         return {
-            member : {} // 로그인 회원 정보
+            apiURL : "http://localhost:3000",
+            // 로그인 회원 정보
+            member : {},
         };
     },
     mutations : {
