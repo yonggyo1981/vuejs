@@ -1,8 +1,19 @@
 const express = require('express');
 const morgan = require('morgan');
+const { sequelize } = require("./models");
 const memberRouter = require('./routes/member'); // 회원 Router
 const app = express();
 app.set('PORT', process.env.PORT || 3000);
+
+/** DB 연결 */
+sequelize.sync({ force : false })
+		.then(() => {
+			console.log("DB 연결 성공!");
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+
 app.use(morgan('dev'));
 
 /** 공통 미들웨어 */

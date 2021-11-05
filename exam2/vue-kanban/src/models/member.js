@@ -14,8 +14,6 @@ export default {
          * @param {*} data 
          */
         async $join(data) {
-            console.log(data);
-           
             const result = await this.$request(this.requestURL,data, "POST");
             console.log(result);
         },
