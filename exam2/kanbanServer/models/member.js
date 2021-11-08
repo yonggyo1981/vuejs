@@ -9,8 +9,14 @@ const member = {
 	* 회원가입
 	*
 	*/
-	join(data) {
-		
+	async join(data) {
+		const sql = `INSERT INTO member (memId, memPw, memNm, cellPhone) 
+								VALUES (:memId, :memPw, :memNm, :cellPhone)`;
+								
+		const result = await sequelize.query(sql, {
+				replacements : replacements,
+				type : QueryType.INSERT,
+		});
 	},
 	/**
 	* 회원정보 수정
