@@ -33,6 +33,8 @@ const member = {
 			
 			const memNo = result[0];
 			const memberInfo = await this.get(memNo);
+			
+			return memberInfo;
 		} catch (err) {
 			console.error(err);
 			return false;
