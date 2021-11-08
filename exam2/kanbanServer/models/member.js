@@ -118,8 +118,8 @@ const member = {
 		// 휴대전화번호 형식 체크 S 
 		if (data.cellPhone) {
 			let cellPhone = data.cellPhone;
-			cellPhone = cellPhone.replace(/[^0-9]/, "");
-			const pattern = /01[016789][0-9]{3,4}[0-9]{4}/;
+			cellPhone = cellPhone.replace(/[^0-9]/g, "");
+			const pattern = /^01[016789][0-9]{3,4}[0-9]{4}$/;
 			if (!pattern.test(cellPhone)) {
 				throw new Error('휴대전화번호 형식이 아닙니다.');
 			}
