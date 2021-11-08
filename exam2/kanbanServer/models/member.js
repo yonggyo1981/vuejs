@@ -53,9 +53,10 @@ const member = {
 	* 회원가입 유효성 검사
 	*   1. 필수 항목 체크(memId, memPw, memPwRe, memNm) - O
 	*   2. 아이디 체크(자리수 6자리 이상, 알파벳 + 숫자) - O 
-	*   3. 중복 아이디 체크
-	*   4. 비밀번호 체크(자리수 8자리 이상, 알파벳 + 숫자 + 특수 문자)
-	*   5. 휴대전화번호는 필수 X -> 입력된 경우는 휴대전화번호 형식 체크
+	*   3. 중복 아이디 체크 - O
+	*   4. 비밀번호 체크(자리수 8자리 이상, 알파벳 + 숫자 + 특수 문자) - O 
+	*   5. 비밀번호 확인 - O
+	*   6. 휴대전화번호는 필수 X -> 입력된 경우는 휴대전화번호 형식 체크
 	*/
 	async checkJoinData(data) {
 		// 필수 항목 체크 
@@ -96,6 +97,34 @@ const member = {
 			throw new Error('이미 가입된 아이디 입니다. - ' + memId);
 		}
 		// 중복 아이디 체크 E
+		
+		// 비밀번호 체크 S
+		const memPw = data.memPw;
+		if (memPw.length < 8) {
+			throw new Error("비밀번호는 8자리 이상 입력하세요.");
+		}
+
+		if (!/[a-z]/i.test(memPw) || !/[0-9]/.test(memPw) || !/[~!@#$%^&*()]/.test(memPw)) {
+			throw new Error("비밀번호는 1개이상의 알파벳, 숫자, 특수문자로 입력하세요.");
+		}
+		// 비밀번호 체크 E 
+		
+		// 비밀번호 확인 S 
+		if (memPw != data.memPwRe) {
+			throw new Error("비밀번호를 확인하세요.");
+		}
+		// 비밀번호 확인 E 
+		
+		// 휴대전화번호 형식 체크 S 
+		if (data.cellPhone) {
+			let cellPhone = data.cellPhone;
+			cellPhone = cellPhone.replace(/[^0-9]/, "");
+			const pattern = /01[016789][0-9]{3,4}[0-9]{4}/;
+			if (!pattern.test(cellPhone)) {
+				throw new Error('휴대전화번호 형식이 아닙니다.');
+			}
+		}
+		// 휴대전화번호 형식 체크 E 
 	},
 	/**
 	* 회원 정보 조회
