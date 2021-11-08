@@ -15,7 +15,7 @@ export default {
          */
         async $join(data) {
             const result = await this.$request(this.requestURL,data, "POST");
-            console.log(result);
+            return result;
         },
         /**
          * 회원정보 수정 
