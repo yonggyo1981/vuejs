@@ -24,6 +24,7 @@ router.use(async (req, res) => {
 				break;
 		}
 	} catch (err) {
+		console.log(err);
 		message = err.message;
 	}
 	const result = { 

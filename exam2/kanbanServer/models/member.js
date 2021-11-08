@@ -11,9 +11,9 @@ const member = {
 	*
 	*/
 	async join(data) {
+		await this.checkJoinData(data);
+		
 		try {
-			this.checkJoinData(data);
-			return false;
 			const sql = `INSERT INTO member (memId, memPw, memNm, cellPhone) 
 									VALUES (:memId, :memPw, :memNm, :cellPhone)`;
 			const hash = data.memPw?await bcrypt.hash(data.memPw, 10):"";
@@ -114,7 +114,7 @@ const member = {
 			throw new Error("비밀번호를 확인하세요.");
 		}
 		// 비밀번호 확인 E 
-		
+
 		// 휴대전화번호 형식 체크 S 
 		if (data.cellPhone) {
 			let cellPhone = data.cellPhone;
