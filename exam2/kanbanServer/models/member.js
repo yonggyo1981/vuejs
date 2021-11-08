@@ -68,8 +68,10 @@ const member = {
 			if (rows.length == 0) { // 회원이 없는 경우 
 				return false;
 			}
+			const data = rows[0];
+			delete data.memPw;
 			
-			return rows[0];
+			return data;
 		} catch (err) {
 			console.error(err);
 			return false;
