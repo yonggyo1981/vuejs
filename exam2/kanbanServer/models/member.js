@@ -12,6 +12,8 @@ const member = {
 	*/
 	async join(data) {
 		try {
+			this.checkJoinData(data);
+			return false;
 			const sql = `INSERT INTO member (memId, memPw, memNm, cellPhone) 
 									VALUES (:memId, :memPw, :memNm, :cellPhone)`;
 			const hash = data.memPw?await bcrypt.hash(data.memPw, 10):"";
@@ -46,6 +48,54 @@ const member = {
 	*/
 	update(data) {
 		
+	},
+	/**
+	* 회원가입 유효성 검사
+	*   1. 필수 항목 체크(memId, memPw, memPwRe, memNm) - O
+	*   2. 아이디 체크(자리수 6자리 이상, 알파벳 + 숫자) - O 
+	*   3. 중복 아이디 체크
+	*   4. 비밀번호 체크(자리수 8자리 이상, 알파벳 + 숫자 + 특수 문자)
+	*   5. 휴대전화번호는 필수 X -> 입력된 경우는 휴대전화번호 형식 체크
+	*/
+	async checkJoinData(data) {
+		// 필수 항목 체크 
+		const required = {
+			memId : "아이디를 입력하세요.",
+			memPw : "비밀번호를 입력하세요.",
+			memPwRe : "비밀번호를 확인하세요.",
+			memNm : "회원명을 입력하세요.",
+		};
+		
+		for (let key in required) {
+			if (!data[key] || (data[key] && data[key].trim() == "")) {
+				throw new Error(required[key]);
+			}
+		}
+		
+		// 아이디 체크 S 
+		const memId = data.memId;
+		if (memId.length < 6) {
+			throw new Error("아이디는 6자리 이상 입력하세요.");
+		}
+		
+		// test (매칭이되면 true), exec - 매칭이 되면 매칭된 요소를 반환
+		// /[^a-z0-9]/ - 알파벳, 숫자가 아닌 문자 - case-insensitive
+		if (/[^a-z0-9]/i.test(memId)) {
+			throw new Error("아이디는 알파벳과 숫자로만 입력하세요.");
+		}
+		// 아이디 체크 E 
+		
+		// 중복 아이디 체크 S 
+		const sql = "SELECT COUNT(*) cnt FROM member WHERE memId = ?";
+		const rows = await sequelize.query(sql, {
+				replacements : [memId],
+				type : QueryTypes.SELECT,
+		});
+		
+		if (rows[0].cnt > 0) { // 이미 가입된 경우 
+			throw new Error('이미 가입된 아이디 입니다. - ' + memId);
+		}
+		// 중복 아이디 체크 E
 	},
 	/**
 	* 회원 정보 조회
