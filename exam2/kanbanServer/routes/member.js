@@ -33,7 +33,6 @@ router.use(async (req, res) => {
 			/** 토큰으로 회원 정보 조회 */
 			case "get_member" : 
 				const result = await member.getByToken(data.token);
-				console.log("result : ", result);
 				if (!result) {
 					throw new Error('토큰 회원조회 실패');
 				}
