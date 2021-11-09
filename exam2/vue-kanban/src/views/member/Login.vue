@@ -14,6 +14,11 @@ import member from '../../models/member.js'
 export default {
     components : {PageTitle, MessagePopup},
     mixins : [member],
+    created() {
+        if (this.$isLogin()) {
+            this.$router.push({ path : "/logout"} );
+        }
+    },
     data() {
         return {
             message : "",
@@ -25,7 +30,7 @@ export default {
             const formData = new FormData(this.$refs.frmLogin);
             const result = await this.$login(formData);
             if (result.success) {
-                //location.href='/home';
+                location.href='/home';
             }
 
             if (result.message) {

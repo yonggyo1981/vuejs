@@ -1,7 +1,10 @@
 <template>
   <div id="nav">
     <router-link to="/"><i class='xi-home-o'></i></router-link>
-    <router-link to="/join"><i class='xi-user-plus-o'></i></router-link>
+    <router-link to="/join"><i :class="{'xi-user-o': $isLogin(), 'xi-user-plus-o': !$isLogin()}"></i></router-link>
+    <router-link to="/login">
+      <i :class="{ 'xi-log-out' : $isLogin(), 'xi-log-in' : !$isLogin()}"></i>
+    </router-link>
   </div>
   <router-view/>
 </template>
