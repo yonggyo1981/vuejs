@@ -44,11 +44,35 @@ export default {
          * 
          */
         async $loginInit() {
+            if (this.$store.state.member) {
+                return;
+            }
+
+            // 회원 정보가 없는 경우만 서버에 정보 요청 
             const token = sessionStorage.getItem("sessionId");
             const apiURL = this.$store.state.apiURL + "/member";
             const data = { mode : "get_member", token };
             const result = await this.$request(apiURL, data, "POST");
-            console.log(result);
+            if (result.success) {
+                this.$store.commit('setMember', result.data);
+            } else {
+                if (token) { // 토큰이 있지만 회원정보가 X, 만료된 경우 
+                    sessionStorage.removeItem('sessionId');
+                }
+            }
+        },
+        /** 로그인 체크 */
+        $isLogin() {
+            return this.$store.state.member?true:false;
+        },
+        /** 로그아웃 처리 */
+        $logOut() {
+            this.$store.commit('setMember', null);
+            sessionStorage.removeItem('sessionId');
+        },
+        /** 로그인 회원 정보 */
+        $getMember() {
+            return this.$store.state.member;
         }
     }
 }

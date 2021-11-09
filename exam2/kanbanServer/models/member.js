@@ -257,8 +257,10 @@ const member = {
 		}
 			
 		const data = rows[0];
+		delete data.memPw;
+		
 		const expireTime = new Date(data.tokenExpires).getTime();
-		if (expireTime > Date.now()) {
+		if (expireTime < Date.now()) {
 			throw new Error('토큰이 만료 되었습니다.');
 		}
 			
