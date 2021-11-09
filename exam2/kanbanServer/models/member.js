@@ -240,27 +240,29 @@ const member = {
 			throw new Error('토큰이 누락되었습니다');
 		}
 		
+		let rows = [];
 		try {
 			const sql = 'SELECT * FROM member WHERE token = ?';
-			const rows = await sequelize.query(sql, {
+			rows = await sequelize.query(sql, {
 				replacements : [token],
 				type : QueryTypes.SELECT,
 			});
-			
-			if (rows.length == 0) {
-				throw new Error('존재하지 않는 회원입니다');
-			}
-			
-			const data = rows[0];
-			const expireTime = new Date(data.tokenExpires).getTime();
-			if (expireTime > Date.now()) {
-				throw new Error('토큰이 만료 되었습니다.');
-			}
-			
-			return data;
 		} catch (err) {
+			console.log(err);
 			return false;
 		}
+		
+		if (rows.length == 0) {
+			throw new Error('존재하지 않는 회원입니다');
+		}
+			
+		const data = rows[0];
+		const expireTime = new Date(data.tokenExpires).getTime();
+		if (expireTime > Date.now()) {
+			throw new Error('토큰이 만료 되었습니다.');
+		}
+			
+		return data;
 	}
 };
 
