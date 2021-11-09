@@ -31,6 +31,13 @@ export default {
             }
 
             return json;
+        },
+        $showMessage(obj, message) {
+            obj.message = message;
+            const ref = obj.$refs.popup;
+            if(ref) {
+                ref.isHide = false;
+            }
         }
     }
 }

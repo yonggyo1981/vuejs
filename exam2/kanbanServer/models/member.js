@@ -224,7 +224,7 @@ const member = {
 		try {
 			await sequelize.query(sql, {
 				replacements, 
-				type : QueryTypes.INSERT,
+				type : QueryTypes.UPDATE,
 			});
 			
 			return hash;

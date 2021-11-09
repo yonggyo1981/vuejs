@@ -5,18 +5,32 @@
         <input type="password" name="memPw" placeholder="비밀번호"><br>
         <input type="submit" value="로그인">
     </form>
+    <MessagePopup ref='popup' :message="message" />
 </template>
 <script>
 import PageTitle from '../../components/PageTitle.vue'
+import MessagePopup from '../../components/common/Message.vue'
 import member from '../../models/member.js'
 export default {
-    components : {PageTitle},
+    components : {PageTitle, MessagePopup},
     mixins : [member],
+    data() {
+        return {
+            message : "",
+        };
+    },
     methods : {
         async formSubmit(e) {
             e.preventDefault();
             const formData = new FormData(this.$refs.frmLogin);
             const result = await this.$login(formData);
+            if (result.success) {
+                //location.href='/home';
+            }
+
+            if (result.message) {
+                this.$showMessage(this, result.message);
+            }
         }
     }
 

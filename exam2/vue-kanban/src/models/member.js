@@ -36,7 +36,14 @@ export default {
             }
 
             const result = await this.$request(this.requestURL, data, "POST");
-            console.log(result);
+            if (result.success) { // 로그인 성공
+                /**
+                 * 토큰이 발급 -> 세션 스토리지 저장 
+                 */
+                sessionStorage.setTime('sessionId', result.data.token);
+            }
+
+            return result;
         }
     }
 }
