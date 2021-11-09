@@ -24,6 +24,11 @@ router.use(async (req, res) => {
 				break;
 			case "login" : // 로그인 처리 
 				const result = await member.login(data);
+				if (!result) {
+					throw new Error('로그인 실패하였습니다.');
+				}
+				success = true;
+				returnData = { token };
 				break;
 		}
 	} catch (err) {

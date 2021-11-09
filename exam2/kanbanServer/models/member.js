@@ -87,6 +87,7 @@ const member = {
 		
 		// 토큰 -> 로그인한 회원 정보를 조회, 유효시간 
 		const token = await this.generateToken(data.memId);
+		return token;
 	}
 	
 	/**
