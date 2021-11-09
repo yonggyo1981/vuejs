@@ -1,5 +1,6 @@
 const { sequelize, Sequelize : { QueryTypes } } = require("./index");
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 /**
 * 회원 models
@@ -55,10 +56,10 @@ const member = {
 	*/ 
 	async login(data) {
 		/**
-		* 1. 필수 항목(아이디, 비번) 체크
-		* 2. 아이디 -> 회원정보 조회
-		* 3. 회원이 있으면 비밀번호 체크 
-		* 4. 비밀번호 일치하는 경우 
+		* 1. 필수 항목(아이디, 비번) 체크(O)
+		* 2. 아이디 -> 회원정보 조회(O)
+		* 3. 회원이 있으면 비밀번호 체크 (O)
+		* 4. 비밀번호 일치하는 경우 (O)
 			   접속 유효 시간이 있는 토큰 발급 -> 
 			   토큰을 프론트 브라우저에 저장(세션 스토리지)
 			   토큰을 프론트 -> 서버로 -> 토큰 검증(유효시간이 남아 있고 회원 ID 있으면) 
@@ -72,7 +73,20 @@ const member = {
 			throw new Error('비밀번호를 입력하세요.');
 		}
 		
+		// 회원정보 조회
+		const info = await this.get(data.memId);
+		if (!info) {
+			throw new Error("존재하지 않는 회원입니다.");
+		}
 		
+		// 비밀번호 체크 
+		const match = await bcrypt.compare(data.memPw, info.memPw);
+		if (!match) {
+			throw new Error('비밀번호가 일치하지 않습니다.');
+		}
+		
+		// 토큰 -> 로그인한 회원 정보를 조회, 유효시간 
+		const token = await this.generateToken(data.memId);
 	}
 	
 	/**
@@ -157,7 +171,7 @@ const member = {
 	*
 	* @param memNo - 정수 - 회원번호, 문자 -> 아이디
 	*/
-	async get(memNo) {
+	async get(memNo, isLogin) {
 		try {
 			let fields = "memNo";
 			if (typeof memNo == 'string') {
@@ -174,13 +188,50 @@ const member = {
 				return false;
 			}
 			const data = rows[0];
-			delete data.memPw;
+			if (!isLogin) {
+				delete data.memPw;
+			}
 			
 			return data;
 		} catch (err) {
 			console.error(err);
 			return false;
 		}
+	},
+	/**
+	* 토큰 발급 
+	*     - 로그인 유지
+	*     - 유효 시간(2시간)
+	*/
+	async generateToken(memId) {
+		const now = Date.now();
+		const hash = crypto.createHash('sha256').update(now).digest('hex');
+		
+		const expireTime = now + 60 * 60 * 2 * 1000;
+		const sql = `UPDATE member 
+								SET 
+									token = :token,
+									tokenExpires = :tokenExpires 
+							WHERE 
+									memId = :memId`;
+		const replacements = {
+				token : hash,
+				tokenExpires : new Date(expireTime),
+				memId,
+		};
+		
+		try {
+			await sequelize.query(sql, {
+				replacements, 
+				type : QueryTypes.INSERT,
+			});
+			
+			return hash;
+		} catch (err) {
+			cosole.error(err);
+			return false;
+		}
+ 		
 	}
 };
 

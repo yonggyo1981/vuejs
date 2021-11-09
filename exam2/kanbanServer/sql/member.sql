@@ -1,11 +1,14 @@
-CREATE TABLE member (
-	memNo INT AUTO_INCREMENT,
-    memId VARCHAR(30) NOT NULL,
-    memPw VARCHAR(65) NOT NULL,
-    memNm VARCHAR(30) NOT NULL,
-    cellPhone VARCHAR(11),
-    regDt DATETIME DEFAULT NOW(),
-    modDt DATETIME,
-    UNIQUE (memId),
-    PRIMARY KEY(memNo)
-);
+CREATE TABLE `member` (
+  `memNo` int NOT NULL AUTO_INCREMENT,
+  `memId` varchar(30) NOT NULL,
+  `memPw` varchar(65) NOT NULL,
+  `memNm` varchar(30) NOT NULL,
+  `cellPhone` varchar(11) DEFAULT NULL,
+  `token` varchar(50) DEFAULT NULL,
+  `tokenExpires` datetime DEFAULT NULL,
+  `regDt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modDt` datetime DEFAULT NULL,
+  PRIMARY KEY (`memNo`),
+  UNIQUE KEY `memId` (`memId`),
+  KEY `ix_token` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
