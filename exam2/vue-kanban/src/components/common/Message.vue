@@ -20,11 +20,9 @@ export default {
         }
     },
     methods : {
-        /** 팝업 닫기 */
         hidePopup() {
-           this.isHide = true;
+            this.isHide = true;
         }
-        
     }
 }
 </script>
@@ -34,13 +32,12 @@ export default {
     box-sizing: border-box;
     position: fixed;
     width: 280px;
-    min-height: 80px;
     border: 2px solid #000000;
     border-radius: 5px;
     background-color: #ffffff;
     z-index: 100;
     left: calc(50% - 140px);
-    top: 30%;
+    top: calc(50% - 105px);
     padding: 20px;
 }
 .message_popup .tit {
@@ -68,6 +65,7 @@ export default {
 
 .message_popup .message { 
     font-size: 13px;
+    height: 60px;
     padding: 10px 0;
 }
 </style>
