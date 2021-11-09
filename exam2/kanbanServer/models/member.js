@@ -47,8 +47,8 @@ const member = {
 	* 회원정보 수정
 	*
 	*/
-	update(data) {
-		
+	async update(data) {
+		console.log(data);
 	},
 	/**
 	* 로그인 처리 

@@ -73,6 +73,10 @@ export default {
         /** 로그인 회원 정보 */
         $getMember() {
             return this.$store.state.member;
+        },
+        /** 세션 스토리지 sessionId */
+        $getToken() {
+            return sessionStorage.getItem("sessionId");
         }
     }
 }

@@ -20,7 +20,7 @@ router.use(async (req, res) => {
 				}
 				break;
 			case "update": // 회원정보 수정
-				member.update(data);
+				let result = await member.update(data);
 				break;
 			case "login" : // 로그인 처리 
 				const token = await member.login(data);
@@ -32,7 +32,7 @@ router.use(async (req, res) => {
 				break;
 			/** 토큰으로 회원 정보 조회 */
 			case "get_member" : 
-				const result = await member.getByToken(data.token);
+				result = await member.getByToken(data.token);
 				if (!result) {
 					throw new Error('토큰 회원조회 실패');
 				}

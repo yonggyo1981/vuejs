@@ -21,8 +21,16 @@ export default {
          * 회원정보 수정 
          * @param {*} data 
          */
-        $update(data) {
-            console.log(data);
+        async $update(data) {
+            const token = this.$getToken();
+            if (data instanceof FormData) {
+                data.append("token", token);
+            } else {
+                data.token = token;
+            }
+
+            const result = await this.$request(this.apiURL, data, "POST");
+            console.log(result);
         },
         /**
          * 로그인 
