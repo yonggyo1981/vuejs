@@ -74,7 +74,7 @@ const member = {
 		}
 		
 		// 회원정보 조회
-		const info = await this.get(data.memId);
+		const info = await this.get(data.memId, true);
 		if (!info) {
 			throw new Error("존재하지 않는 회원입니다.");
 		}
@@ -88,7 +88,7 @@ const member = {
 		// 토큰 -> 로그인한 회원 정보를 조회, 유효시간 
 		const token = await this.generateToken(data.memId);
 		return token;
-	}
+	},
 	
 	/**
 	* 회원가입 유효성 검사
@@ -206,7 +206,7 @@ const member = {
 	*/
 	async generateToken(memId) {
 		const now = Date.now();
-		const hash = crypto.createHash('sha256').update(now).digest('hex');
+		const hash = crypto.createHash('md5').update("" + now).digest('hex');
 		
 		const expireTime = now + 60 * 60 * 2 * 1000;
 		const sql = `UPDATE member 
@@ -229,7 +229,7 @@ const member = {
 			
 			return hash;
 		} catch (err) {
-			cosole.error(err);
+			console.error(err);
 			return false;
 		}
  		

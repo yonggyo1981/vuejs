@@ -23,8 +23,8 @@ router.use(async (req, res) => {
 				member.update(data);
 				break;
 			case "login" : // 로그인 처리 
-				const result = await member.login(data);
-				if (!result) {
+				const token = await member.login(data);
+				if (!token) {
 					throw new Error('로그인 실패하였습니다.');
 				}
 				success = true;
