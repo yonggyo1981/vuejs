@@ -23,6 +23,20 @@ export default {
          */
         $update(data) {
             console.log(data);
+        },
+        /**
+         * 로그인 
+         * @param {*} data 
+         */
+        async $login(data) {
+            if (data instanceof FormData) {
+                data.append("mode", "login");
+            } else {
+                data.mode = "login";
+            }
+
+            const result = await this.$request(this.requestURL, data, "POST");
+            console.log(result);
         }
     }
 }

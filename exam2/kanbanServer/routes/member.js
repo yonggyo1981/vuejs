@@ -22,6 +22,9 @@ router.use(async (req, res) => {
 			case "update": // 회원정보 수정
 				member.update(data);
 				break;
+			case "login" : // 로그인 처리 
+				const result = await member.login(data);
+				break;
 		}
 	} catch (err) {
 		console.log(err);

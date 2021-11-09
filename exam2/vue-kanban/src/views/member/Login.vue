@@ -8,11 +8,15 @@
 </template>
 <script>
 import PageTitle from '../../components/PageTitle.vue'
+import member from '../../models/member.js'
 export default {
     components : {PageTitle},
+    mixins : [member],
     methods : {
-        formSubmit(e) {
-            console.log(e);
+        async formSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(this.$refs.frmLogin);
+            const result = await this.$login(formData);
         }
     }
 
