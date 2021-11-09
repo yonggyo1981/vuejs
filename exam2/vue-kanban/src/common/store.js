@@ -4,7 +4,7 @@ const store = createStore({
         return {
             apiURL : "http://localhost:3000",
             // 로그인 회원 정보
-            member : {},
+            member : null,
         };
     },
     mutations : {

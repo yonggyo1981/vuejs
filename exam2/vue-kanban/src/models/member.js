@@ -40,7 +40,7 @@ export default {
                 /**
                  * 토큰이 발급 -> 세션 스토리지 저장 
                  */
-                sessionStorage.setTime('sessionId', result.data.token);
+                sessionStorage.setItem('sessionId', result.data.token);
             }
 
             return result;
