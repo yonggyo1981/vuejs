@@ -21,13 +21,13 @@
         <dl>
             <dt>작업명</dt>
             <dd>
-                <input type="text" name="subject" :value="subject">
+                <input type="text" name="subject" :value="kanban.subject">
             </dd>
         </dl>
         <dl>
             <dt>작업내용</dt>
             <dd>
-                <textarea name="content" :value="content"></textarea>                
+                <textarea name="content" :value="kanban.content"></textarea>                
             </dd>
         </dl>
         <input type="submit" value="작업등록">
@@ -41,22 +41,22 @@ export default {
         };
     },
     mounted() {
-        this.picked = this.status;
+        this.picked = this.kanban.status;
     },
     props : {
         mode : {
             type : String,
             default : "add",
         },
-        status : {
-            type : String,
-            default : "ready",
-        },
-        subject : {
-            type : String,
-        },
-        content : {
-            type : String,
+        kanban : {
+            type : Object,
+            default() {
+                return {
+                    status : "ready",
+                    subject : "",
+                    content : "",
+                };
+            }
         }
     },
     methods : {
