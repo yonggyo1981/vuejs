@@ -48,7 +48,54 @@ const member = {
 	*
 	*/
 	async update(data) {
-		console.log(data);
+		/** 필수 항목 체크 S */
+		const required = {
+			token : "토큰이 누락되었습니다.",
+			memNm : "회원명을 입력하세요.",
+		};
+		
+		for (let key in required) {
+			if (!data[key]) {
+				throw new Error(required[key]);
+			}
+		}
+		/** 필수 항목 체크 */
+		
+		/** 비밀번호 변경 시도시 비밀번호 체크 */
+		this.checkPassword(data.memPw, data.memPwRe);
+		
+		/** 휴대전화번호 형식 체크 */
+		this.checkCellPhone(data.cellPhone);	
+		
+		let cellPhone = "";
+		if (data.cellPhone) {
+			cellPhone = data.cellPhone.replace(/[^0-9]/g, "");
+		}
+			
+		const replacements = {
+				memNm : data.memNm,
+				cellPhone,
+		};
+		let addSet = "";
+		if (data.memPw) {
+			const hash = await bcrypt.hash(data.memPw, 10);
+			addSet = ",password = :hash";
+			replacements.hash = hash;
+		}
+		
+		try {
+			const sql = `UPDATE member 
+									SET 
+										memNm = :memNm,
+										cellPhone = :cellPhone
+										${addSet}
+								WHERE 
+									token = :token`;
+			
+		} catch (err) {
+			console.error(err);
+			return false;
+		}
 	},
 	/**
 	* 로그인 처리 
@@ -140,7 +187,18 @@ const member = {
 		// 중복 아이디 체크 E
 		
 		// 비밀번호 체크 S
-		const memPw = data.memPw;
+		this.checkPassword(data.memPw, data.memPwRe);
+		// 비밀번호 체크 E 
+		
+		// 휴대전화번호 형식 체크 S 
+		this.checkCellPhone(data.cellPhone);
+		// 휴대전화번호 형식 체크 E 
+	},
+	/** 비밀번호 체크 */
+	checkPassword(memPw, memPwRe) {
+		if (!memPw)
+			return;
+		
 		if (memPw.length < 8) {
 			throw new Error("비밀번호는 8자리 이상 입력하세요.");
 		}
@@ -148,24 +206,24 @@ const member = {
 		if (!/[a-z]/i.test(memPw) || !/[0-9]/.test(memPw) || !/[~!@#$%^&*()]/.test(memPw)) {
 			throw new Error("비밀번호는 1개이상의 알파벳, 숫자, 특수문자로 입력하세요.");
 		}
-		// 비밀번호 체크 E 
 		
 		// 비밀번호 확인 S 
-		if (memPw != data.memPwRe) {
+		if (memPw != memPwRe) {
 			throw new Error("비밀번호를 확인하세요.");
 		}
 		// 비밀번호 확인 E 
-
-		// 휴대전화번호 형식 체크 S 
-		if (data.cellPhone) {
-			let cellPhone = data.cellPhone;
-			cellPhone = cellPhone.replace(/[^0-9]/g, "");
-			const pattern = /^01[016789][0-9]{3,4}[0-9]{4}$/;
-			if (!pattern.test(cellPhone)) {
-				throw new Error('휴대전화번호 형식이 아닙니다.');
-			}
+	},
+	/** 휴대전화번호 형식 체크 */
+	checkCellPhone(cellPhone) {
+		if (!cellPhone) {
+			return;
 		}
-		// 휴대전화번호 형식 체크 E 
+		
+		cellPhone = cellPhone.replace(/[^0-9]/g, "");
+		const pattern = /^01[016789][0-9]{3,4}[0-9]{4}$/;
+		if (!pattern.test(cellPhone)) {
+			throw new Error('휴대전화번호 형식이 아닙니다.');
+		}
 	},
 	/**
 	* 회원 정보 조회
