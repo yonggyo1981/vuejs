@@ -6,6 +6,7 @@ import Login from '../views/member/Login.vue'
 import Logout from '../views/member/Logout.vue'
 
 import KanbanMain from '../views/kanban/Main.vue'
+import KanbanAdd from '../views/kanban/Add.vue'
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/kanban',
     name: "Kanban Main",
     component: KanbanMain
+  },
+  {
+    path: '/kanban/add',
+    name: "Kanban Add",
+    component: KanbanAdd
   }
 ]
 
