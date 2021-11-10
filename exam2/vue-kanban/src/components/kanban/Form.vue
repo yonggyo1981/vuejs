@@ -36,7 +36,9 @@
     </form>
 </template>
 <script>
+import kanban from "../../models/kanban.js"
 export default {
+    mixins : [kanban],
     data() {
         return {
             picked : "ready",
@@ -65,7 +67,12 @@ export default {
     methods : {
         formSubmit(e) {
             e.preventDefault();
-            console.log(this.status);
+           const formData = new FormData(this.$refs.frmKanban);
+           if (this.mode == 'add') { // 작업 추가 
+                this.$addWork(formData);
+           } else { // 작업 수정 
+                this.$editWork(formData);
+           }
         }
     }
 }

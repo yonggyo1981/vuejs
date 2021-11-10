@@ -1,8 +1,14 @@
 export default {
+    data() {
+        return {
+            requestURL : this.$store.state.apiURL + "/kanban",
+        };
+    },
     methods : {
         /** 작업 추가 */
-        $addWork(data) {
-            console.log(data);
+        async $addWork(data) {
+           const result = await this.$request(this.requestURL, data, "POST");
+           console.log(result);
         },
         /** 작업 수정 */
         $editWork(data) {
