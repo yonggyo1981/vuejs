@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const { sequelize } = require("./models");
 const memberRouter = require('./routes/member'); // 회원 Router
+const kanbanRouter = require('./routes/kanban'); // 칸반보드 Router
+
 const app = express();
 app.set('PORT', process.env.PORT || 3000);
 
@@ -29,7 +31,7 @@ app.use(express.urlencoded({ extended : false }));
 
 /** 라우터 등록 */
 app.use("/member", memberRouter);
-
+app.use("/kanban", kanbanRouter);
 
 /** 없는 페이지 처리 라우터 */
 app.use((req, res, next) => {
