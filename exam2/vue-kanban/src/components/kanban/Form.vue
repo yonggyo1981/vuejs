@@ -5,15 +5,15 @@
             <dt>작업구분</dt>
             <dd>
                 <label>
-                    <input type="radio" name="status" value="ready" v-model="status">
+                    <input type="radio" name="status" value="ready" v-model="picked">
                     준비중
                 </label>
                 <label>
-                    <input type="radio" name="status" value="progress" v-model="status">
+                    <input type="radio" name="status" value="progress" v-model="picked">
                     진행중
                 </label>
                 <label>
-                    <input type="radio" name="status" value="done" v-model="status">
+                    <input type="radio" name="status" value="done" v-model="picked">
                     완료
                 </label>
             </dd>
@@ -37,13 +37,20 @@
 export default {
     data() {
         return {
-            status : "ready",
+            picked : "ready",
         };
+    },
+    mounted() {
+        this.picked = this.status;
     },
     props : {
         mode : {
             type : String,
             default : "add",
+        },
+        status : {
+            type : String,
+            default : "ready",
         },
         subject : {
             type : String,
