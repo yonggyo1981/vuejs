@@ -1,6 +1,7 @@
 <template>
     <form ref="frmKanban" autocomplete="off" @submit="formSubmit($event)">
         <input type="hidden" name="mode" :value="mode">
+        <input type="hidden" name="idx" :value="kanban.idx" v-if="mode != 'add'">
         <dl>
             <dt>작업구분</dt>
             <dd>
@@ -30,7 +31,8 @@
                 <textarea name="content" :value="kanban.content"></textarea>                
             </dd>
         </dl>
-        <input type="submit" value="작업등록">
+        <input type="submit" value="작업등록" v-if="mode == 'add'">
+        <input type="submit" value="작업수정" v-else>
     </form>
 </template>
 <script>
@@ -52,6 +54,7 @@ export default {
             type : Object,
             default() {
                 return {
+                    idx : 0,
                     status : "ready",
                     subject : "",
                     content : "",
