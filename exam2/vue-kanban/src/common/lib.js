@@ -7,7 +7,6 @@ export default {
             if (data && data instanceof FormData) {
                 data = this.$formDataToJson(data);
             }
-
             try {
                 const result = await axios({
                     method,

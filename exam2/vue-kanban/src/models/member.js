@@ -29,7 +29,7 @@ export default {
                 data.token = token;
             }
 
-            const result = await this.$request(this.apiURL, data, "POST");
+            const result = await this.$request(this.requestURL, data, "POST");
             console.log(result);
         },
         /**
