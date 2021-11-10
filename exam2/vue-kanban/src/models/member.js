@@ -30,7 +30,7 @@ export default {
             }
 
             const result = await this.$request(this.requestURL, data, "POST");
-            console.log(result);
+            return result;
         },
         /**
          * 로그인 
