@@ -91,7 +91,11 @@ const member = {
 										${addSet}
 								WHERE 
 									token = :token`;
-			
+			await sequelize.query(sql, {
+				replacements, 
+				type : QueryTypes.UPDATE
+			});
+			return true;
 		} catch (err) {
 			console.error(err);
 			return false;
