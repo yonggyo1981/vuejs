@@ -59,10 +59,6 @@ export default {
             const result = await this.$request(apiURL, data, "POST");
             if (result.success) {
                 this.$store.commit('setMember', result.data);
-            } else {
-                if (token) { // 토큰이 있지만 회원정보가 X, 만료된 경우 
-                    sessionStorage.removeItem('sessionId');
-                }
             }
         },
         /** 로그인 체크 */
