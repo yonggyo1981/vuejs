@@ -79,9 +79,11 @@ const member = {
 		let addSet = "";
 		if (data.memPw) {
 			const hash = await bcrypt.hash(data.memPw, 10);
-			addSet = ",password = :hash";
+			addSet = ",memPw = :hash";
 			replacements.hash = hash;
 		}
+		
+		replacements.token = data.token;
 		
 		try {
 			const sql = `UPDATE member 
