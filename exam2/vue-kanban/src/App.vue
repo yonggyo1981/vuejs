@@ -5,6 +5,9 @@
     <router-link to="/login">
       <i :class="{ 'xi-log-out' : $isLogin(), 'xi-log-in' : !$isLogin()}"></i>
     </router-link>
+    <router-link to="/kanban" v-if="$isLogin()">
+      <i class='xi-view-module'></i>
+    </router-link>
   </div>
   <router-view/>
 </template>
