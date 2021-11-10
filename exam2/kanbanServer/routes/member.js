@@ -21,6 +21,11 @@ router.use(async (req, res) => {
 				break;
 			case "update": // 회원정보 수정
 				const result = await member.update(data);
+				if (!result) {
+					throw new Error('회원정보 수정 실패하였습니다.');
+				}
+				success = true;
+				message = "회원정보가 수정되었습니다.";
 				break;
 			case "login" : // 로그인 처리 
 				const token = await member.login(data);
