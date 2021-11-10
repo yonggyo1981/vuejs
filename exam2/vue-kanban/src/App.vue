@@ -1,9 +1,10 @@
 <template>
   <div id="nav">
     <router-link to="/"><i class='xi-home-o'></i></router-link>
-    <router-link to="/join"><i :class="{'xi-user-o': $isLogin(), 'xi-user-plus-o': !$isLogin()}"></i></router-link>
-    <router-link to="/logout"><i class="xi-log-out"></i></router-link>
-    <router-link to="/login"><i class='xi-log-in'></i></router-link>
+    <router-link to="/my_info" v-if="$isLogin()"><i class='xi-user-o'></i></router-link>
+    <router-link to="/join" v-else><i class="xi-user-plus-o"></i></router-link>
+    <router-link to="/logout" v-if="$isLogin()"><i class="xi-log-out"></i></router-link>
+    <router-link to="/login" v-else><i class='xi-log-in'></i></router-link>
     <router-link to="/kanban" v-if="$isLogin()">
       <i class='xi-view-module'></i>
     </router-link>
