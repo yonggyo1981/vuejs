@@ -8,7 +8,7 @@ export default {
         /** 작업 추가 */
         async $addWork(data) {
            const result = await this.$request(this.requestURL, data, "POST");
-           console.log(result);
+           return result;
         },
         /** 작업 수정 */
         $editWork(data) {
