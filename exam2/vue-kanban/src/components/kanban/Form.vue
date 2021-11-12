@@ -72,10 +72,15 @@ export default {
         async formSubmit(e) {
             e.preventDefault();
            const formData = new FormData(this.$refs.frmKanban);
+           let result = {};
            if (this.mode == 'add') { // 작업 추가 
-                const result = await this.$addWork(formData);
+                result = await this.$addWork(formData);
            } else { // 작업 수정 
                 this.$editWork(formData);
+           }
+           
+           if (result.message) {
+               this.$showMessage(this, result.message);
            }
         }
     }
