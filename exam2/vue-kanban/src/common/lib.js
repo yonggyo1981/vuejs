@@ -48,19 +48,21 @@ export default {
          * 
          */
         async $loginInit() {
+            
             if (this.$store.state.member) {
                 return;
             }
-
+            
             // 회원 정보가 없는 경우만 서버에 정보 요청 
             const token = sessionStorage.getItem("sessionId");
             if (!token) {
                 return;
             }
-
+           
             const apiURL = this.$store.state.apiURL + "/member";
             const data = { mode : "get_member", token };
             const result = await this.$request(apiURL, data, "POST");
+            
             if (result.success) {
                 this.$store.commit('setMember', result.data);
             }

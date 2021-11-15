@@ -44,12 +44,13 @@ export default {
     components : {MessagePopup},
     data() {
         return {
-            picked : "ready",
             message : "",
         };
     },
-    mounted() {
-        this.picked = this.kanban.status;
+    computed : {
+       picked() {
+           return this.kanban.status || "ready";
+       }
     },
     props : {
         mode : {
