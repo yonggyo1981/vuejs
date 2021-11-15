@@ -55,7 +55,7 @@ export default {
     methods : {
         /** 링크 이동  */
         goLink(link) {
-            this.$router.push({ patah : "/kanban/" + link, query : { idx : this.view.idx }});
+            this.$router.push({ path : "/kanban/" + link, query : { idx : this.view.idx }});
         }
     }
 }
