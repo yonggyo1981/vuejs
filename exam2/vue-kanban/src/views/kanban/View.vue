@@ -21,7 +21,7 @@
     </dl>
     <div class='btns'>
         <button type="button" @click="goLink('edit')">수정</button>
-        <button type="button" @click="goLink('delete')">삭제</button>
+        <button type="button" @click="deleteWork">삭제</button>
         <button type="button" @click="goLink('list')">목록</button>
     </div>
 </div>
@@ -56,6 +56,11 @@ export default {
         /** 링크 이동  */
         goLink(link) {
             this.$router.push({ path : "/kanban/" + link, query : { idx : this.view.idx }});
+        },
+        async deleteWork() {
+            const idx = this.view.idx;
+            const result = await this.$deleteWork(idx);
+            console.log(result);
         }
     }
 }
