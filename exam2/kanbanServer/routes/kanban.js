@@ -8,6 +8,7 @@ router.use(async (req, res) => {
 	let returnData = {};
 	let message = "";
 	let result = {};
+	console.log(data);
 	try {
 		switch (mode) {
 			/** 작업 추가 */
