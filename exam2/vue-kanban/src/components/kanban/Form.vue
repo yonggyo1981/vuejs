@@ -74,14 +74,18 @@ export default {
             e.preventDefault();
            const formData = new FormData(this.$refs.frmKanban);
            let result = {};
+           let idx = 0;
            if (this.mode == 'add') { // 작업 추가 
-                result = await this.$addWork(formData);  
+                result = await this.$addWork(formData); 
+                idx = result.data.idx; 
            } else { // 작업 수정 
                 result = await this.$editWork(formData);
+                idx = this.$route.query.idx;
            }
-           
+
             if (result.success) {
-                this.$router.push({ path : "/kanban/view", query : { idx : result.data.idx}});
+                this.$router.push({ path : "/kanban/view", query : { idx }});
+                return;
             }
 
            if (result.message) {

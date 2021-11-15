@@ -36,6 +36,16 @@ router.use(async (req, res) => {
 				if (!data.idx) {
 					throw new Error('작업등록번호 누락');
 				}
+				
+				const info = await kanban.get(data.idx);
+				if (!info) {
+					throw new Error('삭제할 작업내역이 없습니다.');
+				}
+				
+				if (info.memNo != data.memNo) {
+					throw new Error('본인이 작성한 작업내역만 삭제 가능합니다.');
+				}
+				
 				result = await kanban.deleteWork(data.idx);
 				if (!result) {
 					throw new Error('작업삭제 실패하였습니다');

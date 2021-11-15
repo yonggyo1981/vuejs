@@ -7,7 +7,7 @@ const { sequelize, Sequelize : { QueryTypes } } = require('./index');
 const kanban = {
 	/** 필수 입력 항목 */
 	required : {
-		//memNo : "회원만 사용가능한 서비스 입니다.",
+		memNo : "회원만 사용가능한 서비스 입니다.",
 		status : "작업 구분을 선택하세요.",
 		subject : "작업명을 입력하세요.",
 		content : "작업내용을 입력하세요.",
@@ -38,6 +38,11 @@ const kanban = {
 		this.required.idx = "작업등록번호가 누락되었습니다.";
 		this.checkData(data);
 		
+		const info = await this.get(data.idx);
+		if (info.memNo != data.memNo) {
+			throw new Error('본인이 작성한 작업 내역만 수정 가능합니다.');
+		}
+		
 		try {
 			const sql = `UPDATE worklist 
 									SET 
@@ -64,7 +69,7 @@ const kanban = {
 		
 	},
 	/** 작업 삭제 */
-	async deleteWork(idx) {
+	async deleteWork(idx) {		
 		try {
 			const sql = "DELETE FROM worklist WHERE idx = ?";
 			await sequelize.query(sql, {
