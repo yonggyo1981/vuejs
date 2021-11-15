@@ -60,7 +60,13 @@ export default {
         async deleteWork() {
             const idx = this.view.idx;
             const result = await this.$deleteWork(idx);
-            console.log(result);
+            if (result.success) {
+                this.$router.push({ path : "/list" });
+            }
+
+            if (result.message) {
+                this.$showMessage(this, result.message);
+            }
         }
     }
 }

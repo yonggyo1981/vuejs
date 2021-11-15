@@ -30,7 +30,12 @@ router.use(async (req, res) => {
 				if (!data.idx) {
 					throw new Error('작업등록번호 누락');
 				}
-				result = await kanban.delete(data.idx);
+				result = await kanban.deleteWork(data.idx);
+				if (!result) {
+					throw new Error('작업삭제 실패하였습니다');
+				}
+				
+				success = true;
 				break;
 			/** 작업 목록 */
 			case "getList" : 
