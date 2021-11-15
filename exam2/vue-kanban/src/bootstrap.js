@@ -1,5 +1,5 @@
 export default {
-    created() {
-       this.$loginInit();
+    async created() {
+       await this.$loginInit();
     }
 }
