@@ -11,8 +11,9 @@ export default {
            return result;
         },
         /** 작업 수정 */
-        $editWork(data) {
-            console.log(data);
+        async $editWork(data) {
+            const result = await this.$request(this.requestURL, data, "POST");
+            return result;
         },
         /** 작업 삭제 */
        async $deleteWork(idx) {
