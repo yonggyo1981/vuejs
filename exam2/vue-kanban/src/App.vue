@@ -5,7 +5,7 @@
     <router-link to="/join" v-else><i class="xi-user-plus-o"></i></router-link>
     <router-link to="/logout" v-if="$isLogin()"><i class="xi-log-out"></i></router-link>
     <router-link to="/login" v-else><i class='xi-log-in'></i></router-link>
-    <router-link to="/kanban" v-if="$isLogin()">
+    <router-link to="/kanban/list" v-if="$isLogin()">
       <i class='xi-view-module'></i>
     </router-link>
   </div>

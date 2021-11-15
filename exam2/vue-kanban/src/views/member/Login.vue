@@ -30,7 +30,7 @@ export default {
             const formData = new FormData(this.$refs.frmLogin);
             const result = await this.$login(formData);
             if (result.success) {
-                location.href='/home';
+                location.href='/kanban/list';
             }
 
             if (result.message) {

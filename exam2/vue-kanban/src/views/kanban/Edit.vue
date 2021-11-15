@@ -15,6 +15,11 @@ export default {
             kanban : {},
         };
     },
+    created() {
+        if (!this.$isLogin()) {
+            return this.$router.push({ path : "/login"});
+        }
+    },
     async mounted() {
         const idx = this.$route.query.idx;
         const result = await this.$get(idx);
