@@ -37,8 +37,19 @@ const kanban = {
 	editWork(data) {
 		
 	},
-	deleteWork(idx) {
-		
+	/** 작업 삭제 */
+	async deleteWork(idx) {
+		try {
+			const sql = "DELETE FROM worklist WHERE idx = ?";
+			await sequelize.query(sql, {
+				replacements : [idx],
+				type : QueryTypes.DELETE,
+			});
+			return true;
+		} catch(err) {
+			console.error(err);
+			return false;
+		}
 	},
 	getList() {
 		
