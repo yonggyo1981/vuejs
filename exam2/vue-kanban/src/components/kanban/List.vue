@@ -1,9 +1,10 @@
 <template>
     <div class='stit'>{{ title }}</div>
-    {{ status}}
 </template>
 <script>
+import kanban from "../../models/kanban.js"
 export default {
+    mixins: [kanban],
     data() {
         return {
             title : "",
@@ -27,6 +28,8 @@ export default {
             default : 
                 this.title = "준비중";
         }
+
+
     }
 }
 </script>
