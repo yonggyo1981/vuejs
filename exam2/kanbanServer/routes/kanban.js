@@ -29,6 +29,14 @@ router.use(async (req, res) => {
 			/** 작업 목록 */
 			case "getList" : 
 				break;
+			/** 작업 내용 */
+			case "get" : 
+				if (!data.idx) {
+					throw new Error("작업등록번호 누락");
+				}
+				
+				kanban.get(data.idx);
+				break;
 		}
 	} catch(err) {
 		success = false;

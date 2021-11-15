@@ -21,6 +21,18 @@ export default {
         /** 작업 목록  */
         $getList(status) {
             console.log(status);
+        },
+        /**
+         * 작업 내용 조회
+         * @param {*} idx 
+         */
+        async $get(idx) {
+            const data = {
+                mode : "get",
+                idx,
+            };
+            const result = await this.$httpRequest(this.requestURL, data);
+            console.log(result);
         }
     }
 }
