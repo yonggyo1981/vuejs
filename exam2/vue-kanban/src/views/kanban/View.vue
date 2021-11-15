@@ -61,7 +61,7 @@ export default {
             const idx = this.view.idx;
             const result = await this.$deleteWork(idx);
             if (result.success) {
-                this.$router.push({ path : "/list" });
+                this.$router.push({ path : "/kanban/list" });
             }
 
             if (result.message) {
