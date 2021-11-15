@@ -33,6 +33,11 @@ export default {
         }
 
         this.list = await this.$getList(this.status);
+    },
+    methods : {
+        goView(idx) {
+            this.$router.push({ path : "/kanban/view", query : { idx }});
+        }
     }
 }
 </script>
