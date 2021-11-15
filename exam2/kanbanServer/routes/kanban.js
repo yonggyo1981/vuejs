@@ -24,6 +24,12 @@ router.use(async (req, res) => {
 			/** 작업 수정 */
 			case "edit" : 
 				result = await kanban.editWork(data);
+				if (!result) {
+					throw new Error('작업수정 실패하였습니다');
+				}
+				
+				success = true;
+				returnData = result;
 				break;
 			/** 작업 삭제 */
 			case "delete" :
