@@ -34,7 +34,33 @@ const kanban = {
 			return false;
 		}		
 	},
-	editWork(data) {
+	async editWork(data) {
+		this.required.idx = "작업등록번호가 누락되었습니다.";
+		this.checkData(data);
+		
+		try {
+			const sql = `UPDATE worklist 
+									SET 
+										status = :status,
+										subject = :subject,
+										content = :content 
+								WHERE 
+									idx = :idx`;
+			const replacements = {
+					status : data.status,
+					subject : data.subject,
+					content : data.content,
+					idx : data.idx,
+			};
+			await sequelize.query(sql, {
+					replacements,
+					type : QueryTypes.UPDATE,
+			});
+			return true;
+		} catch (err) {
+			console.log(err);
+			return false;
+		}
 		
 	},
 	/** 작업 삭제 */

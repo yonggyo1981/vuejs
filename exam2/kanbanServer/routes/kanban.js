@@ -23,7 +23,7 @@ router.use(async (req, res) => {
 				break;
 			/** 작업 수정 */
 			case "edit" : 
-				kanban.editWork(data);
+				result = await kanban.editWork(data);
 				break;
 			/** 작업 삭제 */
 			case "delete" :
