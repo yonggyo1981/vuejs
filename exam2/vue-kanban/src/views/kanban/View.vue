@@ -17,9 +17,10 @@
     </dl>
     <dl>
         <dt>작업내용</dt>
-        <dd v-html="view.content"></dd>
+        <dd v-html="view.contentHtml"></dd>
     </dl>
     <div class='btns'>
+        <button type="button" @click="goLink('add')">추가</button>
         <button type="button" @click="goLink('edit')">수정</button>
         <button type="button" @click="deleteWork">삭제</button>
         <button type="button" @click="goLink('list')">목록</button>
@@ -58,6 +59,10 @@ export default {
             this.$router.push({ path : "/kanban/" + link, query : { idx : this.view.idx }});
         },
         async deleteWork() {
+            if (!confirm('정말 삭제하시겠습니까?')) {
+                return;
+            }
+
             const idx = this.view.idx;
             const result = await this.$deleteWork(idx);
             if (result.success) {

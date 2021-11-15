@@ -137,7 +137,7 @@ const kanban = {
 				day = (day < 10)?"0"+day:day;
 				data.regDt = `${year}.${month}.${day}`;
 				
-				data.content = data.content.replace(/\r\n/g, "<br>");
+				data.contentHtml = data.content.replace(/\r\n/g, "<br>");
 				
 			}
 			return data;
