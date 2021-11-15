@@ -18,7 +18,7 @@ export default {
        async $deleteWork(idx) {
             const data = { mode : "delete", idx };
             const result = await this.$request(this.requestURL, data, "POST");
-            console.log(result);
+            return result;
         },
         /** 작업 목록  */
         $getList(status) {
