@@ -21,8 +21,11 @@ export default {
             return result;
         },
         /** 작업 목록  */
-        $getList(status) {
-            console.log(status);
+        async $getList(status) {
+            const data = { mode : "getList", status };
+            const result = await this.$request(this.requestURL, data, "POST");
+            console.log(result);
+            return result;
         },
         /**
          * 작업 내용 조회

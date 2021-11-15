@@ -17,7 +17,7 @@ export default {
             default : "ready",
         }
     },
-    mounted() {
+    async mounted() {
         switch(this.status) {
             case "progress" : 
                 this.title = "진행중";
@@ -29,6 +29,7 @@ export default {
                 this.title = "준비중";
         }
 
+        this.list = await this.$getList(this.status);
 
     }
 }
