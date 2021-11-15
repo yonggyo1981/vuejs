@@ -60,7 +60,20 @@ const kanban = {
 				return false;
 			}
 			
-			return rows[0];
+			const data = rows[0];
+			if (data) {
+				const date = new Date(data.regDt);
+				const year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				month = (month < 10)?"0"+month:month;
+				let day = date.getDate();
+				day = (day < 10)?"0"+day:day;
+				data.regDt = `${year}.${month}.${day}`;
+				
+				data.content = data.content.replace(/\r\n/g, "<br>");
+				
+			}
+			return data;
 		} catch (err) {
 			console.error(err);
 			return false;

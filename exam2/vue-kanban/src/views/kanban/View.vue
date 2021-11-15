@@ -8,9 +8,22 @@
         <dd v-else>준비중</dd>
     </dl>
     <dl>
+        <dt>등록일</dt>
+        <dd>{{ view.regDt }}</dd>
+    </dl>
+    <dl>
         <dt>작업명</dt>
         <dd>{{ view.subject }}</dd>
     </dl>
+    <dl>
+        <dt>작업내용</dt>
+        <dd v-html="view.content"></dd>
+    </dl>
+    <div class='btns'>
+        <button type="button" @click="goLink('edit')">수정</button>
+        <button type="button" @click="goLink('delete')">삭제</button>
+        <button type="button" @click="goLink('list')">목록</button>
+    </div>
 </div>
 
 <MessagePopup ref="popup" :message="message" />
@@ -37,6 +50,12 @@ export default {
 
         if (result.message) {
             this.$showMessage(this, result.message);
+        }
+    },
+    methods : {
+        /** 링크 이동  */
+        goLink(link) {
+            this.$router.push({ patah : "/kanban/" + link, query : { idx : this.view.idx }});
         }
     }
 }
