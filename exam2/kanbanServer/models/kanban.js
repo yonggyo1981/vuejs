@@ -58,7 +58,22 @@ const kanban = {
 	* @param status - ready, progress, done 
 	*/
 	async getList(memNo, status) {
-		
+		try {
+			const sql = `SELECT a.*, m.memId, m.memNm FROM worklist a 
+										LEFT JOIN member m ON a.memNo = m.memNo 
+									WHERE a.memNo = :memNo AND a.status = :status 
+									ORDER BY a.regDt DESC`;
+			const replacements = { memNo, status };						
+			const rows = await sequelize.query(sql, {
+					replacements,
+					type : QueryTypes.SELECT,
+			});
+			
+			return rows;
+		} catch (err) {
+			console.error(err);
+			return false;
+		}
 	},
 	/**
 	* 작업내용 조회 

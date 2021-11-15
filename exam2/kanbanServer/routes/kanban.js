@@ -42,6 +42,12 @@ router.use(async (req, res) => {
 				const memNo = data.memNo || 0;
 				const status = data.status || "ready";
 				result = await kanban.getList(memNo, status);
+				if (!result) {
+					throw new Error('작업 목록 조회 실패');
+				}
+				
+				success = true;
+				returnData = result;
 				break;
 			/** 작업 내용 */
 			case "get" : 
