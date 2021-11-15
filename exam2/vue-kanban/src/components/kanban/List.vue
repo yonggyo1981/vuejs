@@ -1,5 +1,6 @@
 <template>
     <div class='stit'>{{ title }}</div>
+    {{ status}}
 </template>
 <script>
 export default {
