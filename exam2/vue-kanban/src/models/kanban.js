@@ -31,7 +31,8 @@ export default {
                 mode : "get",
                 idx,
             };
-            const result = await this.$request(this.requestURL, data);
+            const result = await this.$request(this.requestURL, data, 
+                "POST");
             console.log(result);
         }
     }

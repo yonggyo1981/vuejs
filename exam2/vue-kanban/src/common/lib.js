@@ -11,7 +11,7 @@ export default {
             if (this.$isLogin()) {
                 data.memNo = this.$getMember().memNo;
             }
-            
+
             try {
                 const result = await axios({
                     method,
