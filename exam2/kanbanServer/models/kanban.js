@@ -43,6 +43,29 @@ const kanban = {
 	getList() {
 		
 	},
+	/**
+	* 작업내용 조회 
+	*
+	* @param idx 작업등록번호 
+	*/
+	async get(idx) {
+		try {
+			const sql = "SELECT * FROM worklist WHERE idx = ?";
+			const rows = await sequelize.query(sql, {
+				replacements : [idx],
+				type : QueryTypes.SELECT,
+			});
+			
+			if (rows.length == 0) {
+				return false;
+			}
+			
+			return rows[0];
+		} catch (err) {
+			console.error(err);
+			return false;
+		}
+	},
 	/** 데이터 유효성 검사 */
 	checkData(data) {
 		if (data.mode == 'edit') { // 작업내용 수정 

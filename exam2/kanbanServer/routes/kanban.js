@@ -7,6 +7,7 @@ router.use(async (req, res) => {
 	let success = false;
 	let returnData = {};
 	let message = "";
+	let result = {};
 	try {
 		switch (mode) {
 			/** 작업 추가 */
@@ -35,7 +36,13 @@ router.use(async (req, res) => {
 					throw new Error("작업등록번호 누락");
 				}
 				
-				kanban.get(data.idx);
+				result = await kanban.get(data.idx);
+				if (!result) {
+					throw new Error("작업내역이 없습니다.");
+				}
+				
+				success = true;
+				returnData = result;
 				break;
 		}
 	} catch(err) {
