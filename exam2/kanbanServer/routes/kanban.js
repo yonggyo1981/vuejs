@@ -38,7 +38,10 @@ router.use(async (req, res) => {
 				success = true;
 				break;
 			/** 작업 목록 */
-			case "getList" : 
+			case "getList":
+				const memNo = data.memNo || 0;
+				const status = data.status || "ready";
+				result = await kanban.getList(memNo, status);
 				break;
 			/** 작업 내용 */
 			case "get" : 

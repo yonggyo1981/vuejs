@@ -51,7 +51,13 @@ const kanban = {
 			return false;
 		}
 	},
-	getList() {
+	/**
+	* 작업목록(본인이 작성한)
+	*
+	* @param memNo 회원번호
+	* @param status - ready, progress, done 
+	*/
+	async getList(memNo, status) {
 		
 	},
 	/**
