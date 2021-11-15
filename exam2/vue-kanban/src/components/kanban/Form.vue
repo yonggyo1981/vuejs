@@ -75,6 +75,9 @@ export default {
            let result = {};
            if (this.mode == 'add') { // 작업 추가 
                 result = await this.$addWork(formData);
+                if (result.success) {
+                    this.$router.push({ path : "/kanban/view", query : { idx : result.data.idx}});
+                }
            } else { // 작업 수정 
                 this.$editWork(formData);
            }
