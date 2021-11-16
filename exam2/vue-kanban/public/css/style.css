@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
 /** 공통 */
 * { 
     box-sizing: border-box;
     transition: all 1s;
+    outline: none;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 html { 
     font-size: 13px; 
@@ -9,6 +13,7 @@ html {
 body { 
     margin: 0; 
     color: #212121;
+    background: orange;
 }
 
 a { 
@@ -29,11 +34,54 @@ li {
     display: none !important; 
 }
 
+input[type='text'],
+input[type='password'] {
+    width: 100%;
+    height: 55px;
+    font-size: 1.35rem;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    padding: 0 15px;
+    background-color: #ffffff;
+}
+
+input[type='text']:hover,
+input[type='password']:hover {
+    background-color: #cccccc;
+}
+
+input[type='submit'] {
+    width: 100%;
+    height: 55px;
+    margin: 25px 0;
+    font-size: 1.35rem;
+    background-color: #212121;
+    color: #ffffff;
+    border: 0;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.stit { 
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 /**  app.vue */
+#app {
+    padding: 80px 10px 0;
+}
 #nav { 
  background-color: black;
  text-align: left;
  padding: 10px;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ z-index: 10;
 }
 #nav i {
     font-size: 2.3rem;
@@ -58,7 +106,32 @@ li {
     clear: both;
 }
 
-#nav .right a:last-of-type {
+#nav .right a:last-of-type,
+#nav .right a:nth-child(2) {
     position: relative;
     top: 5px;
+}
+
+/** components/PageTitle.vue */
+.page_title {
+    font-size: 2.5rem;
+    text-shadow:#212121 2px 2px 5px;
+}
+
+/** views/List.vue */
+.add_work {
+    display: block;
+    width: 100%; 
+    height: 55px; 
+    background: #212121;
+    color: #ffffff;
+    font-size: 1.5rem;
+    line-height: 55px;
+    border-radius: 5px; 
+    margin-bottom: 25px; 
+}
+
+/** components/List.vue */
+.work_list {
+    margin: 15px 0 50px;
 }

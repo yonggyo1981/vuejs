@@ -2,7 +2,7 @@
 <form ref="frmMember" method="post" autocomplete='off' @submit="formSubmit($event)">
     <input type="hidden" name="mode" :value="mode">
     <input type="text" name="memId" placeholder='아이디' :value="member.memId" v-if="mode == 'join'">
-    <div v-else>아이디 : {{ member.memId }}</div>
+    <div v-else class='stit'>아이디 : {{ member.memId }}</div>
     <br>          
     <input type="password" name="memPw" placeholder='비밀번호'><br>        
     <input type="password" name="memPwRe" placeholder='비밀번호확인'><br>

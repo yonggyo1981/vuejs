@@ -1,6 +1,6 @@
 <template>
 <PageTitle>작업 목록</PageTitle>
-<router-link to="/kanban/add">작업추가</router-link>
+<router-link to="/kanban/add" class='add_work'>작업추가</router-link>
 <List status="ready" />
 <List status="progress" />
 <List status="done" />

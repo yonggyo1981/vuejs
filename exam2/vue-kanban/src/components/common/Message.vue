@@ -41,7 +41,7 @@ export default {
     padding: 20px;
 }
 .message_popup .tit {
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: bold;
     padding-bottom: 10px; 
     border-bottom: 2px solid #000000;
@@ -64,8 +64,9 @@ export default {
 }
 
 .message_popup .message { 
-    font-size: 13px;
+    font-size: 1.2rem;
     height: 60px;
     padding: 10px 0;
+    font-weight: bold;
 }
 </style>
