@@ -1,8 +1,8 @@
 <template>
     <PageTitle>로그인</PageTitle>
     <form ref="frmLogin" autocomplete="off" @submit="formSubmit($event)">
-        <input type="text" name="memId" placeholder="아이디"><br>
-        <input type="password" name="memPw" placeholder="비밀번호"><br>
+        <input type="text" name="memId" placeholder="아이디" v-model="memId"><br>
+        <input type="password" name="memPw" placeholder="비밀번호" v-model="memPw"><br>
         <input type="submit" value="로그인">
     </form>
     <MessagePopup ref='popup' :message="message" />
@@ -22,6 +22,8 @@ export default {
     data() {
         return {
             message : "",
+            memId : "",
+            memPw : "",
         };
     },
     methods : {
@@ -30,6 +32,8 @@ export default {
             const formData = new FormData(this.$refs.frmLogin);
             const result = await this.$login(formData);
             if (result.success) {
+                this.memId = "";
+                this.memPw = "";
                this.$router.push({ path : "/kanban/list"});
             }
 

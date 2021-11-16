@@ -5,18 +5,15 @@
         <dl>
             <dt>작업구분</dt>
             <dd>
-                <label>
-                    <input type="radio" name="status" value="ready" v-model="picked">
-                    준비중
-                </label>
-                <label>
-                    <input type="radio" name="status" value="progress" v-model="picked">
-                    진행중
-                </label>
-                <label>
-                    <input type="radio" name="status" value="done" v-model="picked">
-                    완료
-                </label>
+                
+                <input type="radio" name="status" id='status_ready' value="ready" v-model="picked">
+                <label for='status_ready'>준비중</label>
+
+                <input type="radio" name="status" id='status_progress' value="progress" v-model="picked">
+                <label for='status_progress'>진행중</label>
+
+                <input type="radio" name="status" id='status_done' value="done" v-model="picked">
+                <label for='status_done'>완료</label>
             </dd>
         </dl>
         <dl>

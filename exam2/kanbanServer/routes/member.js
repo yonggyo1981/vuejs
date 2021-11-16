@@ -45,6 +45,10 @@ router.use(async (req, res) => {
 				success = true;
 				returnData = memberData;
 				break;
+			default : 
+				if (data.origin != 'front') {
+					return res.redirect('/');
+				}
 		}
 	} catch (err) {
 		console.log(err);

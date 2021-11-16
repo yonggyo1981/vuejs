@@ -83,6 +83,10 @@ router.use(async (req, res) => {
 				success = true;
 				returnData = result;
 				break;
+			default :
+				if (data.origin != 'front') {
+					return res.redirect('/');
+				}
 		}
 	} catch(err) {
 		success = false;

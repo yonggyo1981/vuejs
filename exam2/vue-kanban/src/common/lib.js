@@ -12,6 +12,8 @@ export default {
                 data.memNo = this.$getMember().memNo;
             }
             
+            data.origin = "front";
+
             try {
                 const result = await axios({
                     method,
