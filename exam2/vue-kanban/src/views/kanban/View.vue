@@ -15,10 +15,9 @@
         <dt>작업명</dt>
         <dd>{{ view.subject }}</dd>
     </dl>
-    <dl>
-        <dt>작업내용</dt>
-        <dd v-html="view.contentHtml"></dd>
-    </dl>
+    
+    <div v-html="view.contentHtml" class='content'></div>
+    
     <div class='btns'>
         <button type="button" @click="goLink('add')">추가</button>
         <button type="button" @click="goLink('edit')">수정</button>

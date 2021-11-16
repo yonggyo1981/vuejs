@@ -1,5 +1,5 @@
 <template>
-    <form ref="frmKanban" autocomplete="off" @submit="formSubmit($event)">
+    <form id='frmKanban' ref="frmKanban" autocomplete="off" @submit="formSubmit($event)">
         <input type="hidden" name="mode" :value="mode">
         <input type="hidden" name="idx" :value="kanban.idx" v-if="mode != 'add'">
         <dl>
