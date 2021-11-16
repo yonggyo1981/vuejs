@@ -10,5 +10,10 @@ import PageTitle from "../../components/PageTitle.vue"
 import List from "../../components/kanban/List.vue"
 export default {
     components : {PageTitle, List},
+    created() {
+        if (!this.$isLogin() && this.$getToken()) {
+            location.reload();
+        }
+    },
 }
 </script>
