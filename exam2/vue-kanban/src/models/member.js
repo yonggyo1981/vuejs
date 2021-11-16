@@ -49,6 +49,7 @@ export default {
                  * 토큰이 발급 -> 세션 스토리지 저장 
                  */
                 sessionStorage.setItem('sessionId', result.data.token);
+                await this.$loginInit();
             }
 
             return result;
