@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '../views/Main.vue'
 import Join from '../views/member/Join.vue'
 import MyInfo from '../views/member/MyInfo.vue'
 import Login from '../views/member/Login.vue'
@@ -16,7 +15,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Main
+    component: Login
   },
   {
     path: '/join',

@@ -1,2 +1,64 @@
 /** 공통 */
-.dn { display: none !important; }
+* { 
+    box-sizing: border-box;
+    transition: all 1s;
+}
+html { 
+    font-size: 13px; 
+}
+body { 
+    margin: 0; 
+    color: #212121;
+}
+
+a { 
+    text-decoration: none; 
+    color: #212121;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none; 
+}
+
+.dn { 
+    display: none !important; 
+}
+
+/**  app.vue */
+#nav { 
+ background-color: black;
+ text-align: left;
+ padding: 10px;
+}
+#nav i {
+    font-size: 2.3rem;
+    color: #ffffff;
+    vertical-align: middle;
+}
+#nav a {
+    padding: 5px;
+}
+
+#nav a:first-of-type {
+    float: left;
+}
+
+#nav .right { 
+    float: right;
+}
+
+#nav:after { 
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#nav .right a:last-of-type {
+    position: relative;
+    top: 5px;
+}
